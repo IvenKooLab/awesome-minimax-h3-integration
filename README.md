@@ -50,7 +50,7 @@ Find your GPU in the table, then use the notes to inform your configuration.
 | Situation | Stack | Why this combination |
 | :--- | :--- | :--- |
 | **24 GB, first run** | `pruned_int8_convrot` DiT (19.53 GiB) + TE `nvfp4_awq` (14.61 GiB) + [`ComfyUI-MiniMaxH3-Easy`](https://github.com/nkxx188/ComfyUI-MiniMaxH3-Easy) | Easy routes T2V, I2V, first/last-frame, and reference input through a single `Media` port. Sampling, LoRAs, and decoding remain outside the node for later modification. |
-| **24 GB, want speed** | The above + [TE-Speed-MiniMaxH3-OSS](https://github.com/HELPMEEADICE/TE-Speed-MiniMaxH3-OSS) + Turbo `v4_step600_ema` at **6–8 steps** | The maintainer reports about **45%** less work from cache reuse. It patches ComfyUI core, so keep the revert command handy. 6–8 steps reduce Turbo motion smear. |
+| **24 GB, want speed** | The above + [TE-Speed-MiniMaxH3](https://github.com/tl2012tl/TE-Speed-MiniMaxH3) + Turbo `v4_step600_ema` at **6–8 steps** | Block-cache acceleration; v3.2 adapts to current ComfyUI's block prefetch and no longer patches core files. 6–8 steps reduce Turbo motion smear. |
 | **12–16 GB** | Pruned `Q4_K_M` GGUF (10.64 GiB) or pruned `nvfp4` (11.67 GiB) + TE `Q2_K` (7.91 GiB) + fp8mix VAE pair | GGUF offers the most size options, beneficial for tight memory. `IQ1_S` is smaller at 3.78 GiB, but quality noticeably drops. |
 | **8 GB** | [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) NF4 path | The project states 8 GB as its minimum for this path. Offloading performs most work here; expect slow performance, not just small memory footprint. |
 | **RTX 50-series / Blackwell** | [NVIDIA Sol-Attn](https://github.com/kijai/ComfyUI-SolAttn_triton) | **1.14–1.44×** faster than SageAttention with **−37 %** MLP peak VRAM, measured on a 5090. SM89–SM121, Triton 3.6.0. Also unlocks Blackwell-only hybrid-NVFP4 checkpoints. |
@@ -494,7 +494,7 @@ The figures below come from each project's own testing.
 | :--- | ---: | :--- |
 | [`ComfyUI-Spectrum-MiniMax-H3`](https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3) ![Acceleration][cat-accel] | 493 | Spectral feature forecasting — fits post-transformer features with **Chebyshev ridge regression** and extrapolates future steps, skipping selected transformer evaluations. Adaptive scheduling with native fallbacks. The author is explicit that this is an approximation: **output is not bit-identical to native.** |
 | [`ComfyUI-SolAttn_triton`](https://github.com/kijai/ComfyUI-SolAttn_triton) ![Acceleration][cat-accel] | 266 | SolAttention Triton kernel — optimized attention for H3 and other Sol-Attn models. |
-| [`TE-Speed-MiniMaxH3-OSS`](https://github.com/HELPMEEADICE/TE-Speed-MiniMaxH3-OSS) ![Acceleration][cat-accel] | 230 | Block-cache accelerator over the 50-layer DiT loop; reuses cached tail-block residuals when the sigma delta is small. Defaults: `processing_control_value 0.12`, `percent 0.1→0.9`, `mcs 2`, `cache_depth 0.75` → **~45 %** by the author's measurement. ⚠️ **Patches ComfyUI core** (`python patch_model.py`, revertible with `--revert`). |
+| [`TE-Speed-MiniMaxH3`](https://github.com/tl2012tl/TE-Speed-MiniMaxH3) ![Acceleration][cat-accel] | 2 | Block-cache accelerator, by the original TE-Speed author. v3.2 targets current ComfyUI (block prefetch, no core patch), adds a 4/8-step LoRA mode with automatic strategy selection by step count, a long-video (>10 s) cache strategy, and chunked CPU residual transfer; bundles a TE-Speed-compatible fork of the Sol-Attn node. ⚠️ Ships a compiled `nodes.pyd`, no license stated. |
 
 <a id="training"></a>
 
@@ -556,7 +556,6 @@ Some community tools modify or patch ComfyUI. Check the project's documentation 
 
 | Type | Project | Notes |
 | :--- | :--- | :--- |
-| Core-file patch | [`TE-Speed-MiniMaxH3-OSS`](https://github.com/HELPMEEADICE/TE-Speed-MiniMaxH3-OSS) | Provides `patch_model.py` and `--revert`. |
 | Runtime patch | [`DmitryDB/MiniMax-H3-DynTime-sQKV`](https://huggingface.co/DmitryDB/MiniMax-H3-DynTime-sQKV) | Required for its DT-sQKV files. |
 | Runtime patch | [`ComfyUI-H3-Motion-Context`](https://github.com/NikoDemon80/ComfyUI-H3-Motion-Context) | Checks its ComfyUI assumptions at startup. |
 
