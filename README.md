@@ -379,6 +379,7 @@ Diffs the **112 keys shared** between the `ref2va` and `fl2va` weights and store
 | [`ComfyUI-MiniMaxH3-Easy`](https://github.com/nkxx188/ComfyUI-MiniMaxH3-Easy) ![Conditioning][cat-cond] | 332 | Provides a compact workflow for T2V, I2V, first/last-frame, and reference video. Supports unified multi-media input with `@` references and inline dialogue blocks. |
 | [`ComfyUI-MiniMaxH3-Director`](https://github.com/seesee75-commits/ComfyUI-MiniMaxH3-Director) ![Conditioning][cat-cond] | 182 | Offers a timeline editor: drag media onto tracks, trim on a ruler, assign one prompt per shot, with live sampling preview, retakes, and shot chaining. The compiled final prompt remains visible during editing. |
 | [`ComfyUI-PainterNodes`](https://github.com/princepainter/ComfyUI-PainterNodes) ![Conditioning][cat-cond] | 178 | `MiniMaxRefToVideo2` node supports the official reference and dialogue format. |
+| [`OpenH3-IR`](https://github.com/ruashots/open-h3-ir) ![Conditioning][cat-cond] | 19 | The ComfyUI side of OpenH3-IR (see [Prompting](#recipes-prompt)), using its Context-IR service from the same repo, on a model you already run. Drop your pictures, clips and sounds on one panel, name them, then mention them by name in the sentence. The nodes and the service are one tool listed twice, not two projects. |
 
 ### Upscaling, loading & repair
 
@@ -416,6 +417,7 @@ H3 prompts have a fixed three-part structure, inline `<Picture X>` / `<Video X>`
 | :--- | :--- |
 | [`ComfyUI-MiniMax-H3-Promptor`](https://github.com/1038lab/ComfyUI-MiniMax-H3-Promptor) | From v1.1.0, embeds `<Picture X>` directly into the narrative action line for "zero-hallucination inline annotation." Decouples visual analysis from text structuring, reducing API cost. |
 | [`ComfyUI-MiniMax-H3-Guide`](https://github.com/ethanfel/ComfyUI-MiniMax-H3-Guide) | Zero dependencies. "Typed Plan v2" splits identity, keyframes, motion, edit source, voice, and score into explicit roles, compiles them into valid H3 prose, and routes to native nodes. Includes reusable image/audio reference sheets and a locked-frame Foley mode. |
+| [`OpenH3-IR`](https://github.com/ruashots/open-h3-ir) | Follows the Context-IR format and examples MiniMax published, rather than rewriting your prompt: it writes the document, then checks it and fixes what is wrong. Command line, HTTP, or its own ComfyUI nodes, on a model you already run. Apache-2.0. |
 | [`comfyui-minimax-h3-prompt-enhancer-T8`](https://github.com/T8mars/comfyui-minimax-h3-prompt-enhancer-T8) | Provides server-side prompt enhancement via `doubao-seed-evolving`. |
 | [`awesome-minimax-h3-prompts`](https://github.com/BeatAPI/awesome-minimax-h3-prompts) | A prompt corpus with WebM examples and author attribution, categorized into story, action/fantasy, ad/product, music performance, and vlog. |
 | [`minimax-h3-prompt-skill-T8`](https://github.com/T8mars/minimax-h3-prompt-skill-T8) | "Creative DNA" case library, installable as an agent skill, with an Electron desktop viewer. |
