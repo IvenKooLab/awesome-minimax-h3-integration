@@ -530,6 +530,7 @@ Acceleration LoRAs live in [Turbo](#turbo). This section covers everything else.
 
 | LoRA | Size | What it does |
 | :--- | :---: | :--- |
+| [![][gh-mvp--lab]](https://huggingface.co/mvp-lab/MiniMax-H3-RAVEN-Streaming-LoRA) **RAVEN Streaming (4-NFE preview)** | 4.71 GiB | Turns H3 into a **causal streaming generator** — video is produced chunk by chunk, each extrapolated from prior content instead of denoised as one bidirectional clip (`r=128`, 4 NFE, 192 frames at 768×1376/24 fps, `sink=2` / `window=2`). Preview release by the [RAVEN](https://github.com/mvp-ai-lab/RAVEN) team (Imperial College); the authors state texture detail is still limited and real-time playback needs further inference acceleration. Runs through the RAVEN code repo, not ComfyUI. MiniMax-H3 Community License. |
 | [![][gh-lightx2v]](https://huggingface.co/lightx2v/MiniMax-H3-Prompt-Rewriter-LoRA) **Prompt Rewriter** | 3.48 GiB | A Qwen3.6-27B fine-tune that rewrites a short prompt into H3's expected three-part structure. This is a *language-model* LoRA — it does not load into the DiT. |
 
 <a id="partners"></a>
@@ -634,6 +635,7 @@ For MiniMax H3 questions, contact [model@minimax.io](mailto:model@minimax.io).
 [gh-InstantX]: https://img.shields.io/badge/%F0%9F%A4%97-InstantX-FFD21E?style=flat-square
 [gh-Merserk]: https://img.shields.io/badge/%F0%9F%A4%97-Merserk-FFD21E?style=flat-square
 [gh-molbal]: https://img.shields.io/badge/%F0%9F%A4%97-molbal-FFD21E?style=flat-square
+[gh-mvp--lab]: https://img.shields.io/badge/%F0%9F%A4%97-mvp--lab-FFD21E?style=flat-square
 [gh-leejet]: https://img.shields.io/badge/%F0%9F%A4%97-leejet-FFD21E?style=flat-square
 [gh-fal]: https://img.shields.io/badge/%F0%9F%A4%97-fal-FFD21E?style=flat-square
 [gh-matlod]: https://img.shields.io/badge/%F0%9F%A4%97-matlod-FFD21E?style=flat-square
