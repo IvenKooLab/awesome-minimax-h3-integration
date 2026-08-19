@@ -525,6 +525,7 @@ Acceleration LoRAs live in [Turbo](#turbo). This section covers everything else.
 | [![][gh-matlod]](https://huggingface.co/matlod/minimax-h3-turnaround) **minimax-h3-turnaround** | 60 MiB each | **Contact-Sheet diffusion** — one reference image + one instruction produces five coherent, progressively rotated views of the same subject in a single pass, by using H3's timeline as a slot axis rather than as time. A character turnaround from one photo: **~10 s at 512², ~57 s at 1024²**. Three builds: `1024-cont/s600`, `512/s1500`, `512-instruct/s400`. |
 | [![][gh-fal]](https://huggingface.co/fal/research-mini-max-h3-realism-people-lora) **Realism — People** | 125 MiB | Natural-looking people in everyday scenarios, trained by fal on diverse photo data. Works across T2V / I2V / R2V. |
 | [![][gh-Inner--Reflections]](https://huggingface.co/Inner-Reflections/MiniMax-H3-Looping-Sketch-Anime) **Looping Sketch Anime** | 569 MiB | Hand-drawn 2D outlines, flat colours, white outline, built to loop. Strength **0.75–1.25**; pair with a Turbo LoRA if you want to push toward the high end. |
+| [![][gh-TenStrip]](https://huggingface.co/TenStrip/Krea2-H3-Style-Lora) **Krea2 Style** | 1.03 GiB (r512) / 266 MiB (r128) | Experimental style shift toward Krea 2's aesthetics, extracted from a cross-model attn-graft (Krea2 attn K/V). **Only effective for pure T2V.** The author states r512 captures 52 % of the extraction target and r128 only 24 % (negligible) — prefer r512. MiniMax-H3 Community License. |
 
 ### Utility
 
@@ -636,6 +637,7 @@ For MiniMax H3 questions, contact [model@minimax.io](mailto:model@minimax.io).
 [gh-Merserk]: https://img.shields.io/badge/%F0%9F%A4%97-Merserk-FFD21E?style=flat-square
 [gh-molbal]: https://img.shields.io/badge/%F0%9F%A4%97-molbal-FFD21E?style=flat-square
 [gh-mvp--lab]: https://img.shields.io/badge/%F0%9F%A4%97-mvp--lab-FFD21E?style=flat-square
+[gh-TenStrip]: https://img.shields.io/badge/%F0%9F%A4%97-TenStrip-FFD21E?style=flat-square
 [gh-leejet]: https://img.shields.io/badge/%F0%9F%A4%97-leejet-FFD21E?style=flat-square
 [gh-fal]: https://img.shields.io/badge/%F0%9F%A4%97-fal-FFD21E?style=flat-square
 [gh-matlod]: https://img.shields.io/badge/%F0%9F%A4%97-matlod-FFD21E?style=flat-square
