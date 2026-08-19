@@ -534,6 +534,7 @@ Acceleration LoRAs live in [Turbo](#turbo). This section covers everything else.
 | :--- | :---: | :--- |
 | [![][gh-mvp--lab]](https://huggingface.co/mvp-lab/MiniMax-H3-RAVEN-Streaming-LoRA) **RAVEN Streaming (4-NFE preview)** | 4.71 GiB | Turns H3 into a **causal streaming generator** — video is produced chunk by chunk, each extrapolated from prior content instead of denoised as one bidirectional clip (`r=128`, 4 NFE, 192 frames at 768×1376/24 fps, `sink=2` / `window=2`). Preview release by the [RAVEN](https://github.com/mvp-ai-lab/RAVEN) team (Imperial College); the authors state texture detail is still limited and real-time playback needs further inference acceleration. Runs through the RAVEN code repo, not ComfyUI. MiniMax-H3 Community License. |
 | [![][gh-lightx2v]](https://huggingface.co/lightx2v/MiniMax-H3-Prompt-Rewriter-LoRA) **Prompt Rewriter** | 3.48 GiB | A Qwen3.6-27B fine-tune that rewrites a short prompt into H3's expected three-part structure. This is a *language-model* LoRA — it does not load into the DiT. |
+| [![][gh-lightx2v]](https://huggingface.co/lightx2v/MiniMax-H3-Prompt-Rewriter-LoRA-8B) **Prompt Rewriter 8B** | 2.60 GiB | The multimodal sibling of the Prompt Rewriter above: a Qwen3-VL-8B-Instruct LoRA that also *sees your keyframes* — covers T2VA, I2VA (first frame), L2VA (last frame), and FL2VA rewriting with an integrated shot timeline and synchronized physical/ambient sound and music guidance. Ref2VA is not supported. Also a *language-model* LoRA — it does not load into the DiT. |
 
 <a id="partners"></a>
 
