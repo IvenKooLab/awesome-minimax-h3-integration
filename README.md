@@ -540,13 +540,13 @@ Acceleration LoRAs live in [Turbo](#turbo). This section covers everything else.
 
 ## Serving H3
 
-These projects are the main open-source options for serving H3 outside a ComfyUI workflow.
+These projects are the main open-source options for serving H3 outside a ComfyUI workflow. SGLang and vLLM-Omni both ship official, hardware-verified H3 recipes; pick by ecosystem and by which published GPU profile matches your hardware.
 
 | Project | Where it fits |
 | :--- | :--- |
-| [vLLM-Omni](https://github.com/vllm-project/vllm-omni) | The most direct path to an H3 API. Since v0.26.0 it ships an official [MiniMax-H3 recipe](https://github.com/vllm-project/vllm-omni/blob/main/recipes/MiniMaxAI/MiniMax-H3.md): OpenAI-compatible `/v1/videos` serving of T2VA, FL2VA, and Ref2VA from one diffusion stage that loads both DiTs and shares the TE and VAEs. Published profiles from 2× RTX 4090/5090 (CPU offload, ≥200 GiB host RAM) up to 4× B300/GB200, plus AMD ROCm. |
+| [SGLang](https://github.com/sgl-project/sglang) | First-class H3 serving. SGLang Diffusion ships a native H3 pipeline with an official [cookbook](https://docs.sglang.ai/cookbook/diffusion/MiniMax/MiniMax-H3): `sglang serve --model-variant fl2va\|ref2va` covers t2va, fl2va, and ref2va (V2V is a ref2va use case), with every published recipe verified on real hardware — 4×H200/H100, B200/B300 (online quantization), 2×RTX 5090 layerwise offload, single RTX 4090 24 GB (`kitchen_int8`), and day-0 AMD MI355X/MI300X via ROCm + AITER. Also the selectable backend in [`MiniMax-H3-ComfyUI`](https://github.com/MiniMaxH3ComfyUI/MiniMax-H3-ComfyUI). |
+| [vLLM-Omni](https://github.com/vllm-project/vllm-omni) | First-class H3 serving on the vLLM stack. Since v0.26.0 it ships an official [MiniMax-H3 recipe](https://github.com/vllm-project/vllm-omni/blob/main/recipes/MiniMaxAI/MiniMax-H3.md): OpenAI-compatible `/v1/videos` serving of T2VA, FL2VA, and Ref2VA from one diffusion stage that loads both DiTs and shares the TE and VAEs. Published profiles from 2× RTX 4090/5090 (CPU offload, ≥200 GiB host RAM) up to 4× B300/GB200, plus AMD ROCm. |
 | [vLLM](https://github.com/vllm-project/vllm) | The underlying engine vLLM-Omni extends — vLLM alone serves autoregressive models, not H3's DiT. Deploy H3 through vLLM-Omni; keep plain vLLM for the text-model side of your stack (e.g. a prompt-rewriter endpoint). |
-| [SGLang](https://github.com/sgl-project/sglang) | High-performance serving framework and the selectable backend in [`MiniMax-H3-ComfyUI`](https://github.com/MiniMaxH3ComfyUI/MiniMax-H3-ComfyUI). No official H3 recipe yet; community SGLang wrappers exist but are early-stage. |
 
 <a id="compat"></a>
 
