@@ -544,9 +544,9 @@ These projects are the main open-source options for serving H3 outside a ComfyUI
 
 | Project | Where it fits |
 | :--- | :--- |
-| [SGLang](https://github.com/sgl-project/sglang) | High-performance serving framework for multimodal models. Use it for SGLang-based H3 deployments. |
-| [vLLM](https://github.com/vllm-project/vllm) | High-throughput, memory-efficient serving engine. |
-| [vLLM-Omni](https://github.com/vllm-project/vllm-omni) | vLLM's runtime for omni-modal models and a practical choice for H3 API serving. |
+| [vLLM-Omni](https://github.com/vllm-project/vllm-omni) | The most direct path to an H3 API. Since v0.26.0 it ships an official [MiniMax-H3 recipe](https://github.com/vllm-project/vllm-omni/blob/main/recipes/MiniMaxAI/MiniMax-H3.md): OpenAI-compatible `/v1/videos` serving of T2VA, FL2VA, and Ref2VA from one diffusion stage that loads both DiTs and shares the TE and VAEs. Published profiles from 2× RTX 4090/5090 (CPU offload, ≥200 GiB host RAM) up to 4× B300/GB200, plus AMD ROCm. |
+| [vLLM](https://github.com/vllm-project/vllm) | The underlying engine vLLM-Omni extends — vLLM alone serves autoregressive models, not H3's DiT. Deploy H3 through vLLM-Omni; keep plain vLLM for the text-model side of your stack (e.g. a prompt-rewriter endpoint). |
+| [SGLang](https://github.com/sgl-project/sglang) | High-performance serving framework and the selectable backend in [`MiniMax-H3-ComfyUI`](https://github.com/MiniMaxH3ComfyUI/MiniMax-H3-ComfyUI). No official H3 recipe yet; community SGLang wrappers exist but are early-stage. |
 
 <a id="compat"></a>
 
